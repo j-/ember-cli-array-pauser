@@ -1,0 +1,18 @@
+<h2>Messages</h2>
+
+<div class="controls">
+	<button {{action 'pause'}}>Pause</button>
+	<button {{action 'unpause'}}>Unpause</button>
+	<button {{action 'toggle'}}>Toggle</button>
+	<button {{action 'clear'}}>Clear</button>
+</div>
+
+<hr>
+
+<div class="messages">
+	{{#each message in messages}}
+		<div class="message">
+			{{message}}
+		</div>
+	{{/each}}
+</div>
