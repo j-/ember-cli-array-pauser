@@ -5,7 +5,9 @@ var copy = Em.copy;
 var ArrayPauser = Em.ArrayProxy.extend({
 	isPaused: false,
 
-	buffer: Em.A(),
+	buffer: function () {
+		return Em.A();
+	}.property(),
 
 	addToBuffer: function (idx, removedCount, added) {
 		var buffer = get(this, 'buffer');
