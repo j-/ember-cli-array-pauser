@@ -1,5 +1,7 @@
 # ember-cli-array-pauser
 
+[![master branch build status](https://travis-ci.org/j-/ember-cli-array-pauser.svg?branch=master)](https://travis-ci.org/j-/ember-cli-array-pauser)
+
 Ember CLI array pauser addon.
 
 `ember-cli-array-pauser` exposes an [Ember][ember] [ArrayProxy][proxy] subclass
