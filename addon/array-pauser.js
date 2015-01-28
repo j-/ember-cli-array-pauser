@@ -40,7 +40,6 @@ var ArrayPauser = Em.ArrayProxy.extend({
 			arrangedContent = get(this, 'arrangedContent');
 			arrangedContent.replace(idx, removedCount, added);
 		}
-		this.enumerableContentDidChange();
 	}
 });
 
