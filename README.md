@@ -1,25 +1,65 @@
-# Ember-cli-array-pauser
+# ember-cli-array-pauser
 
-This README outlines the details of collaborating on this Ember addon.
+Ember CLI array pauser addon.
 
-## Installation
+`ember-cli-array-pauser` exposes an [Ember][ember] [ArrayProxy][proxy] subclass
+which can be paused and resumed.
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+## Example
 
-## Running
+```js
+import Ember from 'ember';
+import ArrayPauser from 'array-pauser';
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+var arr = Ember.A(['original']);
+var stream = ArrayPauser.create({
+	content: arr
+});
 
-## Running Tests
+arr.pushObject('to remove');
+arr.pushObject('to change');
+console.log(stream.toArray()); // ['original', 'to remove', 'to change']
+stream.set('isPaused', true);
+arr.replace(2, 'changed');
+arr.pushObject('new item');
+arr.removeObject('to remove');
+console.log(stream.toArray()); // ['original', 'to remove', 'to change']
+stream.set('isPaused', false);
+console.log(stream.toArray()); // ['original', 'changed', 'new item']
+```
 
-* `ember test`
-* `ember test --server`
+## Properties
 
-## Building
+**`content`**: Ember.Array (optional, default = `null`)
 
-* `ember build`
+The content array. Must be an object that implements `Ember.Array` and/or
+`Ember.MutableArray`. See [`Ember.ArrayProxy#content`][content].
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+**`isPaused`**: Boolean (optional, default = `false`)
+
+This value determines the pause state of this array proxy.
+
+## Installing
+
+With [npm][npm]:
+
+```sh
+$ npm install --save ember-cli-array-pauser
+```
+
+Or with [Ember CLI][cli]:
+
+```sh
+$ ember install:npm ember-cli-array-pauser
+```
+
+## License
+
+[MIT license](LICENSE.md).
+
+[ember]: http://emberjs.com/
+[proxy]: http://emberjs.com/api/classes/Ember.ArrayProxy.html
+[slice]: https://github.com/j-/ember-cli-array-slice
+[content]: http://emberjs.com/api/classes/Ember.ArrayProxy.html#property_content
+[npm]: https://www.npmjs.com/
+[cli]: http://www.ember-cli.com/
