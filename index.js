@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-array-pauser'
+  name: 'array-pauser'
 };
