@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-array-pauser",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Pause and resume an array",
   "directories": {
     "doc": "doc",
