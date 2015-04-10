@@ -2,7 +2,7 @@ import Em from 'ember';
 var get = Em.get;
 var copy = Em.copy;
 
-var ArrayPauser = Em.ArrayProxy.extend({
+var ArrayPauser = Em.ArrayController.extend({
 	isPaused: false,
 
 	buffer: function () {
