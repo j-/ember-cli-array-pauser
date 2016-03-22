@@ -18,8 +18,8 @@ var ArrayPauser = ArrayController.extend({
 	clearBuffer: Em.observer('isPaused', function () {
 		var buffer = get(this, 'buffer');
 		var arrangedContent = get(this, 'arrangedContent');
-		buffer.forEach(function ([idx, removedCount, added]) {
-			arrangedContent.replace(idx, removedCount, added);
+		buffer.forEach((args) => {
+			arrangedContent.replace(...args);
 		});
 		buffer.clear();
 	}),
