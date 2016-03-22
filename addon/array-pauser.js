@@ -1,7 +1,5 @@
 import Em from 'ember';
 import { ArrayController } from 'ember-legacy-controllers';
-const get = Em.get;
-const copy = Em.copy;
 
 const ArrayPauser = ArrayController.extend({
 	isPaused: false,
@@ -11,13 +9,13 @@ const ArrayPauser = ArrayController.extend({
 	}),
 
 	addToBuffer: function (idx, removedCount, added) {
-		const buffer = get(this, 'buffer');
+		const buffer = this.get('buffer');
 		buffer.pushObject([idx, removedCount, added]);
 	},
 
 	clearBuffer: Em.observer('isPaused', function () {
-		const buffer = get(this, 'buffer');
-		const arrangedContent = get(this, 'arrangedContent');
+		const buffer = this.get('buffer');
+		const arrangedContent = this.get('arrangedContent');
 		buffer.forEach((args) => {
 			arrangedContent.replace(...args);
 		});
@@ -25,20 +23,20 @@ const ArrayPauser = ArrayController.extend({
 	}),
 
 	arrangedContent: Em.computed('content', function () {
-		const content = get(this, 'content');
-		const clone = copy(content);
+		const content = this.get('content');
+		const clone = Em.copy(content);
 		return clone;
 	}),
 
 	contentArrayDidChange: function (arr, idx, removedCount, addedCount) {
 		const added = arr.slice(idx, idx + addedCount);
-		const isPaused = get(this, 'isPaused');
+		const isPaused = this.get('isPaused');
 		let arrangedContent;
 		if (isPaused) {
 			this.addToBuffer(idx, removedCount, added);
 		}
 		else {
-			arrangedContent = get(this, 'arrangedContent');
+			arrangedContent = this.get('arrangedContent');
 			arrangedContent.replace(idx, removedCount, added);
 		}
 	},
