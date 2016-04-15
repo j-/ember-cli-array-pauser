@@ -1,7 +1,6 @@
 import Em from 'ember';
-import { ArrayController } from 'ember-legacy-controllers';
 
-const ArrayPauser = ArrayController.extend({
+const ArrayPauser = Em.ArrayProxy.extend({
 	isPaused: false,
 
 	buffer: Em.computed(function () {
